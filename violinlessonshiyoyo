@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Violin Studio</title>
+  <meta name="description" content="個人バイオリン教室のスタイリッシュなホームページテンプレート" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #0b0b0f;
+      --bg-soft: #14141b;
+      --line: rgba(255,255,255,0.12);
+      --gold: #c9a96b;
+      --gold-soft: #e7d3aa;
+      --text: #f7f7f7;
+      --muted: rgba(255,255,255,0.72);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(201,169,107,0.18), transparent 25%),
+        radial-gradient(circle at bottom left, rgba(201,169,107,0.08), transparent 28%),
+        linear-gradient(180deg, #08080b 0%, #0d0d12 45%, #111118 100%);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(8, 8, 11, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.08em;
+      color: var(--gold-soft);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 26px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold-soft);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+        url("https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=1400&q=80") center/cover no-repeat;
+      opacity: 0.42;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8,8,11,0.92) 0%, rgba(8,8,11,0.72) 40%, rgba(8,8,11,0.35) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .hero-sub {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 14px;
+      border: 1px solid rgba(201,169,107,0.45);
+      color: var(--gold-soft);
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: 0.04em;
+      margin-bottom: 22px;
+      font-weight: 600;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #d8bc87, #b89457);
+      color: #111;
+      box-shadow: 0 8px 30px rgba(201,169,107,0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(201,169,107,0.34);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,0.18);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(201,169,107,0.55);
+      color: var(--gold-soft);
+    }
+
+    section {
+      padding: 96px 0;
+    }
+
+    .section-head {
+      margin-bottom: 42px;
+    }
+
+    .section-label {
+      color: var(--gold);
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card p + p {
+      margin-top: 16px;
+    }
+
+    .visual-box {
+      min-height: 420px;
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.55)),
+        url("https://images.unsplash.com/photo-1465821185615-20b3c2fbf41b?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+    }
+
+    .visual-box::after {
+      content: "MUSIC / SENSIBILITY / EXPRESSION";
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      color: rgba(255,255,255,0.88);
+      letter-spacing: 0.16em;
+      font-size: 0.76rem;
+    }
+
+    .features {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.03));
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .feature-item {
+      padding: 28px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid var(--line);
+      transition: 0.3s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,169,107,0.38);
+    }
+
+    .feature-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .feature-item h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-item p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .lesson-card {
+      border-radius: 24px;
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .lesson-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 14px;
+    }
+
+    .lesson-card .price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+    }
+
+    .lesson-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .profile-wrap {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .profile-image {
+      min-height: 420px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.4)),
+        url("https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=900&q=80") center/cover no-repeat;
+      box-shadow: var(--shadow);
+    }
+
+    .profile-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .contact-box {
+      text-align: center;
+      padding: 56px 28px;
+      border-radius: 30px;
+      background:
+        linear-gradient(135deg, rgba(201,169,107,0.10), rgba(255,255,255,0.03));
+      border: 1px solid rgba(201,169,107,0.24);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      margin-bottom: 14px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto 24px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 36px 0 48px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 900px) {
+      .about-grid,
+      .profile-wrap,
+      .feature-grid,
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 120px 0 80px;
+      }
+
+      .hero h1 {
+        line-height: 1.02;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container header-inner">
+      <a href="#" class="logo">Violin Studio</a>
+      <nav>
+        <ul>
+          <li><a href="#about">教室紹介</a></li>
+          <li><a href="#feature">特徴</a></li>
+          <li><a href="#lesson">レッスン</a></li>
+          <li><a href="#profile">講師</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-content">
+        <span class="hero-sub">Private Violin Lesson</span>
+        <h1>
+          音を磨く。<br>
+          <span>感性を研ぎ澄ます。</span>
+        </h1>
+        <p>
+          静けさの中に芯のある音を。  
+          個人バイオリン教室のための、洗練されたスタイリッシュなホームページテンプレートです。  
+          大人にも子どもにも似合う、上質でクールな印象に仕上げています。
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">体験レッスン受付中</a>
+          <a href="#about" class="btn btn-outline">教室を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">About</span>
+          <h2 class="section-title">個性を大切にする、<br>プライベートレッスン</h2>
+          <p class="section-text">
+            初心者から経験者まで、それぞれのペースと目標に寄り添うレッスンを提供。
+            基礎を大切にしながら、音色・表現・姿勢まで丁寧に整えていきます。
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card about-card">
+            <p>
+              このテンプレートは、バイオリン教室らしい上品さに加えて、
+              シンプルで都会的な雰囲気を意識してデザインしています。
+            </p>
+            <p>
+              教室名、講師名、料金、所在地、LINEやInstagramなどの情報を入れるだけで、
+              そのまま使える構成です。
+            </p>
+            <p>
+              写真を差し替えるだけでもかなり雰囲気が出るので、
+              まずは仮のホームページとして公開したいときにも向いています。
+            </p>
+          </div>
+          <div class="visual-box"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feature" class="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Feature</span>
+          <h2 class="section-title">選ばれる3つの理由</h2>
+          <p class="section-text">
+            見た目だけでなく、個人教室として伝えたい魅力が自然に入る構成にしています。
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <div class="feature-num">01</div>
+            <h3>マンツーマン指導</h3>
+            <p>一人ひとりのレベルや目的に合わせて、無理なく丁寧にレッスンを進めます。</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">02</div>
+            <h3>美しい音づくり</h3>
+            <p>フォーム・運弓・音程を大切にしながら、響きのある演奏を目指します。</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-num">03</div>
+            <h3>落ち着いた空間</h3>
+            <p>音楽に集中できる、静かで上質なレッスン時間をイメージした世界観です。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lesson">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Lesson</span>
+          <h2 class="section-title">レッスンプラン</h2>
+          <p class="section-text">
+            ここはあとで自由に変更できます。月謝制でも1回制でも使えるようにしてあります。
+          </p>
+        </div>
+
+        <div class="lesson-grid">
+          <div class="lesson-card">
+            <h3>Starter</h3>
+            <div class="price">¥00,000</div>
+            <p>はじめての方向け。楽器の持ち方や音の出し方から丁寧にレッスン。</p>
+          </div>
+          <div class="lesson-card">
+            <h3>Standard</h3>
+            <div class="price">¥00,000</div>
+            <p>基礎を整えながら、好きな曲や課題曲にも取り組める標準プラン。</p>
+          </div>
+          <div class="lesson-card">
+            <h3>Advance</h3>
+            <div class="price">¥00,000</div>
+            <p>経験者向け。表現力や音色の深さまで追求したい方におすすめ。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profile">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-label">Profile</span>
+          <h2 class="section-title">講師プロフィール</h2>
+          <p class="section-text">
+            ここに講師名、経歴、演奏歴、指導方針などを入れると一気に完成度が上がります。
+          </p>
+        </div>
+
+        <div class="profile-wrap">
+          <div class="profile-image"></div>
+          <div class="card profile-card">
+            <h3>Teacher Name</h3>
+            <p>
+              音大卒、演奏活動、コンクール歴、指導経験などを記載するエリアです。
+              長すぎず、信頼感が出るくらいの分量がおすすめです。
+            </p>
+            <p>
+              例：  
+              幼少期よりバイオリンを始め、音楽大学卒業後は演奏活動と並行して後進の指導にあたる。
+              基礎を大切にしながら、自然で美しい音づくりを重視したレッスンを行っている。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2>体験レッスン・お問い合わせ</h2>
+          <p>
+            レッスンに関するご質問、体験のお申し込みはこちらから。  
+            LINE・Instagram・メールなど、お好きな方法に合わせて変更できます。
+          </p>
+          <div class="contact-links">
+            <a href="#" class="btn btn-primary">LINEで問い合わせ</a>
+            <a href="#" class="btn btn-outline">Instagram</a>
+            <a href="mailto:example@example.com" class="btn btn-outline">メール</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Violin Studio. All Rights Reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
